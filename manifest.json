@@ -10,5 +10,11 @@
     "permissions": [
         "activeTab",
         "scripting"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["*://gemini.google.com/*"],
+            "js": ["scripts/add-checkbox.js"]
+        }
     ]
 }

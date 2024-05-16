@@ -8,18 +8,11 @@ console.log('popup.js loaded')
 const loadAndRunScript = (script) => {
   return (tabId) => {
     console.log('loadAndRunScript.callback', { script, tabId })
-    chrome.scripting.executeScript(
-      {
-        target: { tabId },
-        files: ['constants.js'],
-      },
-      () => {
-        chrome.scripting.executeScript({
-          target: { tabId },
-          files: [scriptsPath, script].join('/').split(),
-        })
-      }
-    )
+
+    chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['/scripts', script].join('/').split(),
+    })
   }
 }
 
@@ -42,6 +35,7 @@ const addBtnListener = (id, script) => {
 
 const run = () => {
   addBtnListener('add-checkbox', 'add-checkbox.js')
+  addBtnListener('toggle-checkbox', 'toggle-checkbox.js')
 }
 
 run()
