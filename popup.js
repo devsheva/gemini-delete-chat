@@ -6,16 +6,16 @@ console.log('popup.js loaded')
  * @returns
  */
 const loadAndRunScript = (script) => {
-  return (tab) => {
-    console.log('loadAndRunScript.callback', { script, tab })
+  return (tabId) => {
+    console.log('loadAndRunScript.callback', { script, tabId })
     chrome.scripting.executeScript(
       {
-        target: { tabId: tab.id },
+        target: { tabId },
         files: ['constants.js'],
       },
       () => {
         chrome.scripting.executeScript({
-          target: { tabId: tab.id },
+          target: { tabId },
           files: [scriptsPath, script].join('/').split(),
         })
       }
@@ -35,7 +35,7 @@ const addBtnListener = (id, script) => {
         active: true,
         lastFocusedWindow: true,
       },
-      ([tab]) => loadAndRunScript(script)(tab)
+      ([tab]) => loadAndRunScript(script)(tab.id)
     )
   })
 }
