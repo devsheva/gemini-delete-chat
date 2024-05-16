@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Gemini Delete",
+    "description": "Gemini Delete Chat Extension",
+    "version": "1.0",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "assets/gemini_icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ]
+}
