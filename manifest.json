@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": ["*://gemini.google.com/*"],
-            "js": ["scripts/add-checkbox.js"]
+            "js": ["scripts/add-checkbox.js", "scripts/remove-checkbox.js"]
         }
     ]
 }
