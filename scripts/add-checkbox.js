@@ -10,8 +10,10 @@ function run() {
 
     if (!checkbox) {
       checkbox = createCheckbox(index)
-      console.log(checkbox)
-      conversation.insertAdjacentElement('afterbegin', checkbox)
+      const iconDiv = conversation.querySelector(
+        'div.ng-star-inserted.icon-container'
+      )
+      iconDiv.insertAdjacentElement('afterbegin', checkbox)
 
       // todo: add stop propagation
     }
