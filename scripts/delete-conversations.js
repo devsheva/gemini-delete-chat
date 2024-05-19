@@ -10,14 +10,13 @@ function waitForMenuToAppear() {
   return new Promise((resolve) => {
     const overlayDiv = document.querySelector('div.cdk-overlay-container')
 
-    const callback = (records, observer) => {
-      console.log(records, observer)
+    const callback = (mutations, observer) => {
+      console.log(mutations, observer)
       const button = overlayDiv.querySelector(
         'button[data-test-id="delete-button"]'
       )
 
       if (button) {
-        console.log({ button })
         observer.disconnect()
         return resolve(button)
       }
@@ -50,10 +49,12 @@ async function deleteConversation(checkbox) {
   await delay(200)
 
   console.log('3. Waiting for delete button to appear...')
-  const deleteButton = await overlayPromise()
+  const deleteButton = await overlayPromise
 
   if (deleteButton) {
-    console.log({ deleteButton })
+    console.log('4. Clicking delete button...', { deleteButton })
+
+    deleteButton.click()
   }
 
   console.log('Delete completed!')
