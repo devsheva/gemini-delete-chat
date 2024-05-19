@@ -48,6 +48,21 @@ function waitForConfirm() {
   })
 }
 
+async function waitForElementToDisappear(selector, timeout = 2000) {
+  return new Promise(async (resolve, reject) => {
+    setTimeout(() => {
+      reject('Operation timed out')
+    }, timeout)
+
+    const el = document.querySelector(selector)
+    while (el) {
+      await delay(100)
+    }
+
+    resolve()
+  })
+}
+
 /**
  *
  * @param {Element} checkbox
@@ -80,6 +95,8 @@ async function deleteConversation(checkbox) {
     if (confirmButton) {
       console.log('5. Confirming delete...', confirmButton)
       confirmButton.click()
+
+      await waitForElementToDisappear('button[data-test-id="confirm-button"]')
     }
   }
 
