@@ -27,8 +27,25 @@ function waitForMenuToAppear() {
   })
 }
 
-function waitForDeleteModalToAppear() {
-  return new Promise((resolve) => {})
+function waitForConfirm() {
+  return new Promise((resolve) => {
+    const overlayDiv = document.querySelector('div.cdk-overlay-container')
+
+    const callback = (mutations, observer) => {
+      console.log(mutations, observer)
+      const button = overlayDiv.querySelector(
+        'button[data-test-id="confirm-button"]'
+      )
+
+      if (button) {
+        observer.disconnect()
+        return resolve(button)
+      }
+    }
+
+    const observer = new MutationObserver(callback)
+    observer.observe(overlayDiv, { subtree: true, childList: true })
+  })
 }
 
 /**
@@ -54,7 +71,16 @@ async function deleteConversation(checkbox) {
   if (deleteButton) {
     console.log('4. Clicking delete button...', { deleteButton })
 
+    const confirmPromise = waitForConfirm()
+
     deleteButton.click()
+    await delay(200)
+
+    const confirmButton = await confirmPromise
+    if (confirmButton) {
+      console.log('5. Confirming delete...', confirmButton)
+      confirmButton.click()
+    }
   }
 
   console.log('Delete completed!')
