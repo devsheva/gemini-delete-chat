@@ -7,7 +7,7 @@ Gemini Delete Chat is a Chrome Extension that helps to perform a bulk delete of 
 ## TODOS
 
 - [X] Remove Checkboxes
-- [ ] Bulk Delete Conversation
+- [X] Bulk Delete Conversation
 - [ ] Stop Event Propagation on Checkbox Click
 - [ ] Add Stylesheet
 - [ ] Publish Extension on Chrome Web Store

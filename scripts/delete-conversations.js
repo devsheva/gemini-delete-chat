@@ -54,12 +54,11 @@ async function waitForElementToDisappear(selector, timeout = 2000) {
       reject('Operation timed out')
     }, timeout)
 
-    const el = document.querySelector(selector)
-    while (el) {
+    while ((el = document.querySelector(selector))) {
       await delay(100)
     }
 
-    resolve()
+    return resolve()
   })
 }
 
@@ -68,7 +67,7 @@ async function waitForElementToDisappear(selector, timeout = 2000) {
  * @param {Element} checkbox
  */
 async function deleteConversation(checkbox) {
-  await delay(100)
+  await delay(300)
   const parentEl = checkbox.parentElement
   const actions = parentEl.nextElementSibling.querySelector('button')
 
@@ -89,7 +88,7 @@ async function deleteConversation(checkbox) {
     const confirmPromise = waitForConfirm()
 
     deleteButton.click()
-    await delay(200)
+    await delay(300)
 
     const confirmButton = await confirmPromise
     if (confirmButton) {
