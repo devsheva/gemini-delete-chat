@@ -12,17 +12,24 @@ function waitForMenuToAppear() {
 
     const callback = (records, observer) => {
       console.log(records, observer)
-      const buttons = overlayDiv.querySelectorAll('button')
-      if (buttons) {
-        console.log({ buttons })
+      const button = overlayDiv.querySelector(
+        'button[data-test-id="delete-button"]'
+      )
+
+      if (button) {
+        console.log({ button })
         observer.disconnect()
-        return resolve(buttons)
+        return resolve(button)
       }
     }
 
     const observer = new MutationObserver(callback)
     observer.observe(overlayDiv, { subtree: true, childList: true })
   })
+}
+
+function waitForDeleteModalToAppear() {
+  return new Promise((resolve) => {})
 }
 
 /**
@@ -34,15 +41,16 @@ async function deleteConversation(checkbox) {
   const parentEl = checkbox.parentElement
   const actions = parentEl.nextElementSibling.querySelector('button')
 
-  console.log('1. Clicking three dot button ...')
+  console.log('1. Start observing actions overlay...')
+  const overlayPromise = waitForMenuToAppear()
+
+  console.log('2. Clicking three dot button ...')
   actions.click()
 
   await delay(200)
 
-  // todo: check why observer is not triggering!!
-
-  console.log('2. Waiting for delete button to appear...')
-  const deleteButton = await waitForMenuToAppear()
+  console.log('3. Waiting for delete button to appear...')
+  const deleteButton = await overlayPromise()
 
   if (deleteButton) {
     console.log({ deleteButton })
