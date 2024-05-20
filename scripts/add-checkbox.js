@@ -13,11 +13,23 @@ function run() {
       const iconDiv = conversation.querySelector(
         'div.ng-star-inserted.icon-container'
       )
-      iconDiv.insertAdjacentElement('afterbegin', checkbox)
-
-      // todo: add stop propagation
+      iconDiv.insertAdjacentElement('beforebegin', checkbox)
     }
+
+    const clickableDiv = conversation.querySelector(
+      'div[data-test-id="conversation"]'
+    )
+    console.log({ clickableDiv })
+    clickableDiv.addEventListener('click', preventEventPropagation)
   })
+}
+
+/**
+ *
+ * @param {Event} event
+ */
+function preventEventPropagation(event) {
+  event.stopPropagation()
 }
 
 function createCheckbox(index) {
@@ -25,6 +37,7 @@ function createCheckbox(index) {
   checkbox.type = 'checkbox'
   checkbox.className = 'conversation-checkbox'
   checkbox.dataset.index = index
+  checkbox.addEventListener('click', preventEventPropagation)
   return checkbox
 }
 

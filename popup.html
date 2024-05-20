@@ -1,20 +1,48 @@
 <html>
+
+<head>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
 <body>
-    <h1>This is my popup!</h1>
-
-    <div>
-        <button id="add-checkbox">
-            Add Checkboxes
-        </button>
-
-        <button id="remove-checkbox">
-            Remove Checkboxes
-        </button>
-
-        <button id="toggle-checkbox">
-            Toggle Checkboxes
-        </button>
+    <div class="header">
+        <h1>
+            Gemini Delete Chat
+        </h1>
     </div>
+
+    <hr class="divider">
+    
+    <div class="container">
+        <div class="row">
+            <button id="add-checkbox">
+                Add Checkboxes
+            </button>
+
+            <button id="remove-checkbox">
+                Remove Checkboxes
+            </button>
+        </div>
+
+        <div class="row">
+            <button id="toggle-checkbox">
+                Toggle Checkboxes
+            </button>
+        </div>
+
+        <div class="row">
+            <button id="bulk-delete">
+                Bulk Delete
+            </button>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2024 - <a target="_blank" href="https://github.com/devsheva/gemini-delete-chat">devsheva@GitHub</a>
+    </div>
+
     <script type="module" src="popup.js"></script>
 </body>
+
 </html>
