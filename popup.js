@@ -37,6 +37,7 @@ const run = () => {
   addBtnListener('add-checkbox', 'add-checkbox.js')
   addBtnListener('remove-checkbox', 'remove-checkbox.js')
   addBtnListener('toggle-checkbox', 'toggle-checkbox.js')
+  addBtnListener('bulk-delete', 'delete-conversations.js')
 }
 
 run()

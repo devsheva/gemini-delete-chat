@@ -13,7 +13,7 @@ function run() {
       const iconDiv = conversation.querySelector(
         'div.ng-star-inserted.icon-container'
       )
-      iconDiv.insertAdjacentElement('afterbegin', checkbox)
+      iconDiv.insertAdjacentElement('beforebegin', checkbox)
 
       // todo: add stop propagation
     }
