@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Gemini Delete",
     "description": "Gemini Delete Chat Extension",
-    "version": "1.2",
+    "version": "1.3",
     "action": {
       "default_popup": "popup.html",
       "default_icon": "assets/gemini.png"
