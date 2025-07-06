@@ -10,8 +10,16 @@ function run() {
 
     if (!checkbox) {
       checkbox = createCheckbox(index)
-      const iconDiv = conversation.querySelector('div.ng-star-inserted')
-      iconDiv.insertAdjacentElement('beforebegin', checkbox)
+      
+      // Find the clickable div that contains the chat name
+      const clickableDiv = conversation.querySelector(
+        'div[data-test-id="conversation"]'
+      )
+      
+      // Insert checkbox at the very beginning of the clickable div
+      if (clickableDiv) {
+        clickableDiv.insertAdjacentElement('afterbegin', checkbox)
+      }
     }
 
     const clickableDiv = conversation.querySelector(
@@ -35,6 +43,7 @@ function createCheckbox(index) {
   checkbox.type = 'checkbox'
   checkbox.className = 'conversation-checkbox'
   checkbox.dataset.index = index
+  checkbox.style.marginRight = '8px' // Add some spacing between checkbox and chat name
   checkbox.addEventListener('click', preventEventPropagation)
   return checkbox
 }
